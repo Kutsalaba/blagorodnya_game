@@ -1,5 +1,5 @@
 class AppRouteConstants {
-  static const String homeRouteName = '/home';
-  static const String loginRouteName = '/login';
-  static const String profileRouteName = '/profile';
+  static const String homeRoutePath = '/';
+  static const String loginRoutePath = '/login';
+  static const String profileRoutePath = '/profile';
 }

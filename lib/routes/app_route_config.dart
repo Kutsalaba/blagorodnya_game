@@ -1,40 +1,9 @@
-import 'package:blagorodnya_game/details_page.dart';
 import 'package:blagorodnya_game/pages/home_page/home_page.dart';
 import 'package:blagorodnya_game/pages/login_page/login_page.dart';
+import 'package:blagorodnya_game/pages/profile_page/profile_page.dart';
 import 'package:blagorodnya_game/routes/app_route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-
-
-class AppRoutes {
-  static const loginRoute = "/";
-  static const DashboardRoute = "/Dashboard";
-  static const DetailsRoute = "/Details";
-
-  static final GoRouter routes = GoRouter(routes: <GoRoute>[
-    GoRoute(
-      path: loginRoute,
-      builder: (BuildContext context, state) => const HomePage(),
-    ),
-    GoRoute(
-      path: DashboardRoute,
-      builder: (_, state) => const LoginPage(),
-      redirect: (context, state) => _redirect(context),
-    ),
-    GoRoute(
-      path: DetailsRoute,
-      builder: (_, state) => const DetailsView(),
-      redirect: (context, state) => _redirect(context),
-    ),
-  ]);
-
-  static String? _redirect(BuildContext context) {
-    return true ? null : context.namedLocation("/");
-  }
-}
-
-
 
 class AppRouterConfig {
   static GoRouter returnRouter(bool isAuth) {
@@ -48,18 +17,29 @@ class AppRouterConfig {
         //       );
         //     }),
         GoRoute(
-          name: AppRouteConstants.homeRouteName,
-          path: '/',
+          name: 'home',
+          path: AppRouteConstants.homeRoutePath,
           pageBuilder: (context, state) {
-            return const MaterialPage(child: HomePage());
+            return const MaterialPage(
+              child: HomePage(),
+            );
           },
         ),
         GoRoute(
-          name: AppRouteConstants.profileRouteName,
-          path: '/login',
+          name: 'login',
+          path: AppRouteConstants.loginRoutePath,
           pageBuilder: (context, state) {
             return const MaterialPage(
               child: LoginPage(),
+            );
+          },
+        ),
+        GoRoute(
+          name: 'profile',
+          path: AppRouteConstants.profileRoutePath,
+          pageBuilder: (context, state) {
+            return const MaterialPage(
+              child: ProfilePage(),
             );
           },
         ),
@@ -69,30 +49,13 @@ class AppRouterConfig {
       },
       redirect: (context, state) {
         if (!isAuth &&
-            state.location
-                .startsWith('/${AppRouteConstants.profileRouteName}')) {
-          return context.namedLocation(AppRouteConstants.homeRouteName);
+            state.location.startsWith(AppRouteConstants.profileRoutePath)) {
+          return context.namedLocation('/');
         } else {
           return null;
         }
       },
     );
     return router;
-  }
-}
-
-class DetailsPage extends StatelessWidget {
-  final String id;
-
-  const DetailsPage({super.key, required this.id});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Details')),
-      body: Center(
-        child: Text('Details for ID $id'),
-      ),
-    );
   }
 }

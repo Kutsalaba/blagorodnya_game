@@ -2,6 +2,7 @@
 import 'package:blagorodnya_game/pages/home_page/home_page.dart';
 import 'package:blagorodnya_game/pages/login_page/login_page.dart';
 import 'package:blagorodnya_game/routes/app_route_config.dart';
+import 'package:blagorodnya_game/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,6 @@
 import 'package:blagorodnya_game/routes/app_route_config.dart';
 import 'package:blagorodnya_game/routes/app_route_constants.dart';
+import 'package:blagorodnya_game/routes/app_routes.dart';
 import 'package:blagorodnya_game/widgets/app_bar/main_app_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,15 @@ class _HomePageState extends State<HomePage> {
         children: [
           ElevatedButton(
             onPressed: () {
-               GoRouter.of(context).go(AppRoutes.DashboardRoute);
-            }
-,
-            child: Text('Go to Details'),
+              GoRouter.of(context).go(AppRouteConstants.profileRoutePath);
+            },
+            child: Text('Go to Profile'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              GoRouter.of(context).go(AppRouteConstants.loginRoutePath);
+            },
+            child: Text('Go to Login'),
             // onPressed: () {
 
             //   GoRouter.of(context).pushNamed(AppRouteConstants.profileRouteName);
