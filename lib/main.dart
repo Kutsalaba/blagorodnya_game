@@ -1,12 +1,16 @@
 //import 'package:flame/game.dart';
 import 'package:blagorodnya_game/pages/home_page/home_page.dart';
 import 'package:blagorodnya_game/pages/login_page/login_page.dart';
+import 'package:blagorodnya_game/routes/app_route_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:url_strategy/url_strategy.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
       apiKey: "AIzaSyCujVJvIrgOB3Q5GKFPfXvvBftk6TjmEBk",
@@ -23,12 +27,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routerConfig: AppRoutes.routes,
+      // routeInformationParser:
+      //     AppRouterConfig.returnRouter(false).routeInformationParser,
+      // routerDelegate: AppRouterConfig.returnRouter(false).routerDelegate,
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),
         breakpoints: [
@@ -39,10 +47,6 @@ class App extends StatelessWidget {
           const ResponsiveBreakpoint.resize(2468, name: '4K'),
         ],
       ),
-      home: 
-       const HomePage(),
-      
-      
     );
   }
 }

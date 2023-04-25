@@ -28,21 +28,23 @@ import 'package:flutter/material.dart';
 class AuthServices {
   static signupUser(
       String email, String password, String name, BuildContext context) async {
+    var message = ScaffoldMessenger.of(context);
     try {
+      
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
       await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
       await FirestoreUsers.saveUser(name, email, userCredential.user!.uid);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Registration Successful')));
+      
+          message.showSnackBar(SnackBar(content: Text('Registration Successful')));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        ScaffoldMessenger.of(context).showSnackBar(
+        message.showSnackBar(
             SnackBar(content: Text('Password Provided is too weak')));
       } else if (e.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).showSnackBar(
+        message.showSnackBar(
             SnackBar(content: Text('Email Provided already Exists')));
       }
     } catch (e) {
