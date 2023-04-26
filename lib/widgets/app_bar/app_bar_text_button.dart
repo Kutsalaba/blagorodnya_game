@@ -13,7 +13,7 @@ class AppBarTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => onPressed.call(),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {
@@ -33,7 +33,12 @@ class AppBarTextButton extends StatelessWidget {
           },
         ),
       ),
-      child: Text(text),
+      child: Text(
+        text,
+        style: Theme.of(context).primaryTextTheme.displayLarge?.copyWith(
+              fontSize: 24,
+            ),
+      ),
     );
   }
 }

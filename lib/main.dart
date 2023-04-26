@@ -3,6 +3,7 @@ import 'package:blagorodnya_game/pages/home_page/home_page.dart';
 import 'package:blagorodnya_game/pages/login_page/login_page.dart';
 import 'package:blagorodnya_game/routes/app_route_config.dart';
 import 'package:blagorodnya_game/routes/app_routes.dart';
+import 'package:blagorodnya_game/styles/app_theme_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +32,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppThemeData().defaultThemeData,
       routerConfig: AppRoutes.routes,
       // routeInformationParser:
       //     AppRouterConfig.returnRouter(false).routeInformationParser,
