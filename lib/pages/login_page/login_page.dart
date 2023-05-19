@@ -23,9 +23,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MainAppBar(isLogged: login),
-      body: AppGradientBackground(
+    return 
+      // appBar: MainAppBar(isLogged: login),
+      AppGradientBackground(
         child: Form(
           key: _formKey,
           child: Container(
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-      ),
+      
     );
   }
 }

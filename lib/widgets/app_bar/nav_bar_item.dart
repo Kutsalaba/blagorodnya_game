@@ -1,19 +1,22 @@
+import 'package:blagorodnya_game/services/navigation_service.dart';
 import 'package:flutter/material.dart';
+import 'package:blagorodnya_game/locator.dart';
 
-class AppBarTextButton extends StatelessWidget {
-  const AppBarTextButton({
+class NavBarItem extends StatelessWidget {
+  const NavBarItem({
     super.key,
     required this.text,
-    required this.onPressed,
+    required this.navigationPath,
   });
 
   final String text;
-  final void Function() onPressed;
+  final String navigationPath;
+  
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => onPressed.call(),
+      onPressed: () => locator<NavigationService>().navigateTo(navigationPath),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {

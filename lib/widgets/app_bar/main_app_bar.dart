@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/routes/app_route_constants.dart';
 import 'package:blagorodnya_game/styles/app_colors.dart';
-import 'package:blagorodnya_game/widgets/app_bar/app_bar_text_button.dart';
+import 'package:blagorodnya_game/widgets/app_bar/nav_bar_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,19 +28,12 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       backgroundColor: AppColors.beadedBlueColor,
       actions: [
-        AppBarTextButton(
-          onPressed: () {
-            isLogged
-                ? GoRouter.of(context).go(AppRouteConstants.profileRoutePath)
-                : GoRouter.of(context).go(AppRouteConstants.loginRoutePath);
-          },
-          text: isLogged ? 'Profile' : 'Login',
+        NavBarItem(
+          text: isLogged ? 'Profile' : 'Login', 
+          navigationPath: isLogged ? AppRouteConstants.profileRoutePath : AppRouteConstants.loginRoutePath,
         ),
-        AppBarTextButton(
-          onPressed: () {
-            GoRouter.of(context).go(AppRouteConstants.homeRoutePath);
-          },
-          text: 'Home',
+        const NavBarItem(
+          text: 'Home', navigationPath: AppRouteConstants.homeRoutePath,
         ),
 
         // AppBarTextButton(
