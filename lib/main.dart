@@ -7,6 +7,7 @@ import 'package:blagorodnya_game/styles/app_theme_data.dart';
 import 'package:blagorodnya_game/views/layout_template/layout_template.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -24,6 +25,7 @@ void main() async {
       messagingSenderId: "275636510331",
     ),
   );
+  // await Flame.device.fullScreen();
   setupLocator();
   runApp(const App());
 }
