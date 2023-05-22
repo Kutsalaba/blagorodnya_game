@@ -1,5 +1,6 @@
 import 'package:blagorodnya_game/constants/globals.dart';
 import 'package:blagorodnya_game/games/main_game.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 enum MovementState {
@@ -10,7 +11,7 @@ enum MovementState {
 
 class TurtleComponent extends SpriteGroupComponent<MovementState>
     with HasGameRef<MainGame> {
-  final double _spriteHeight = 70;
+  final double _spriteHeight = 80;
 
   final double _speed = 500;
 
@@ -37,10 +38,10 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
       MovementState.goRight: turtleGoRigth,
     };
 
-    _rightBound = gameRef.size.x;
-    _leftBound = 45;
-    _upBound = 55;
-    _downBound = gameRef.size.y - 85;
+    _rightBound = gameRef.size.x - 100;
+    _leftBound = 5;
+    _upBound = 40;
+    _downBound = gameRef.size.y - 35;
 
     current = MovementState.idle;
 
@@ -48,6 +49,8 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
     height = _spriteHeight;
     width = _spriteHeight * 1.22;
     anchor = Anchor.centerLeft;
+
+    // add(CircleHitbox());
   }
 
   @override
