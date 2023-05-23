@@ -13,6 +13,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'locator.dart';
+import 'views/home/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
