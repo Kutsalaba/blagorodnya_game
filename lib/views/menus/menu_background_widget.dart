@@ -13,9 +13,10 @@ class MenuBackgroundWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/${Globals.backgroundSprite}"),
+            image: AssetImage("assets/images/${Globals.backgroundStarter}"),
             fit: BoxFit.cover,
           ),
         ),

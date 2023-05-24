@@ -19,15 +19,27 @@ class GamePlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(
-      initialActiveOverlays: [Menu.main.name],
-      game: _mainGame,
-      overlayBuilderMap: {
-        Menu.gameOver.name: (BuildContext context, MainGame gameRef) =>
-            GameOverMenu(gameRef: gameRef),
-        Menu.main.name: (BuildContext context, MainGame gameRef) =>
-            MainMenu(gameRef: gameRef),
-      },
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 34,
+            spreadRadius: 6,
+            offset: const Offset(3, 5),
+          ),
+        ],
+      ),
+      child: GameWidget(
+        initialActiveOverlays: [Menu.main.name],
+        game: _mainGame,
+        overlayBuilderMap: {
+          Menu.gameOver.name: (BuildContext context, MainGame gameRef) =>
+              GameOverMenu(gameRef: gameRef),
+          Menu.main.name: (BuildContext context, MainGame gameRef) =>
+              MainMenu(gameRef: gameRef),
+        },
+      ),
     );
   }
 }

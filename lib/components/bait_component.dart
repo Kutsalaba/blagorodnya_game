@@ -7,10 +7,8 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 
-
 class BaitComponent extends SpriteComponent
     with HasGameRef<MainGame>, CollisionCallbacks {
-
   final double _spriteHeight = 70.0;
 
   final Random _random = Random();
@@ -47,9 +45,11 @@ class BaitComponent extends SpriteComponent
     }
   }
 
-  Vector2 _createRandomPosition() {
-    final double x = _random.nextInt(gameRef.size.x.toInt()).toDouble();
-    final double y = _random.nextInt(gameRef.size.y.toInt()).toDouble();
+Vector2 _createRandomPosition() {
+    final double x = _random.nextDouble() * (gameRef.size.x - _spriteHeight) +
+        (_spriteHeight / 2);
+    final double y = _random.nextDouble() * (gameRef.size.y - _spriteHeight) +
+        (_spriteHeight / 2);
 
     return Vector2(x, y);
   }

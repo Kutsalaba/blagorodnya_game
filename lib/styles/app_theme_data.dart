@@ -15,23 +15,32 @@ class AppThemeData {
     _appTheme = ThemeData(
       fontFamily: GoogleFonts.comicNeue().fontFamily,
       appBarTheme: const AppBarTheme(
-        foregroundColor: AppColors.irradiatedGreenColor,
+        // foregroundColor: AppColors.irradiatedGreenColor,
       ),
 
       // scaffoldBackgroundColor: AppColors.darkblueBlackColor,
 
       primaryTextTheme: TextTheme(
-        displayLarge:
-            TextStyle(fontSize: 36, fontWeight: FontWeight.bold, shadows: [
-          Shadow(
-            color: Colors.black.withOpacity(0.3),
-            offset: const Offset(0, 3),
-            blurRadius: 5,
-          ),
-        ]),
-      ).apply(
-        bodyColor: AppColors.irradiatedGreenColor,
-        displayColor: AppColors.irradiatedGreenColor,
+        displaySmall: const TextStyle(
+          fontSize: 35,
+          fontWeight: FontWeight.bold,
+        ),
+        displayMedium: const TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+        ),
+        displayLarge: TextStyle(
+          fontSize: 36,
+          fontWeight: FontWeight.bold,
+          shadows: [
+            Shadow(
+              color: Colors.black.withOpacity(0.3),
+              offset: const Offset(0, 3),
+              blurRadius: 5,
+            ),
+          ],
+          color: AppColors.irradiatedGreenColor,
+        ),
       ),
     );
   }

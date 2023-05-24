@@ -3,7 +3,6 @@ import 'package:blagorodnya_game/game_play.dart';
 import 'package:blagorodnya_game/views/menus/menu_background_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class GameOverMenu extends StatelessWidget {
   final MainGame gameRef;
   const GameOverMenu({Key? key, required this.gameRef}) : super(key: key);
@@ -15,22 +14,22 @@ class GameOverMenu extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 50),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50),
               child: Text(
                 'Game Over',
-                style: TextStyle(
-                  fontSize:  50,
-                ),
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: Colors.white,
+                    ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 50),
               child: Text(
                 'Score: ${gameRef.score}',
-                style: const TextStyle(
-                  fontSize: 50,
-                ),
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: Colors.white,
+                    ),
               ),
             ),
             SizedBox(
@@ -42,6 +41,14 @@ class GameOverMenu extends StatelessWidget {
                   gameRef.reset();
                   gameRef.resumeEngine();
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green.shade600,
+                  foregroundColor: Colors.white,
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
                 child: const Text(
                   'Play Again?',
                   style: TextStyle(
@@ -62,10 +69,18 @@ class GameOverMenu extends StatelessWidget {
                   gameRef.reset();
                   gameRef.addMenu(menu: Menu.main);
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green.shade600,
+                  foregroundColor: Colors.white,
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
                 child: const Text(
                   'Main Menu',
                   style: TextStyle(
-                    fontSize:  25,
+                    fontSize: 25,
                   ),
                 ),
               ),

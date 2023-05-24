@@ -9,6 +9,7 @@ class Globals {
   static const String octopusIdleSprite = 'octopus-idle.png';
   static const String baitSprite = 'bait.png';
   static const String backgroundSprite = 'sea.jpg';
+  static const String backgroundStarter = 'starter-back.jpg';
 
   /// Audio
   static const String eatSound = 'eat-sound.wav';

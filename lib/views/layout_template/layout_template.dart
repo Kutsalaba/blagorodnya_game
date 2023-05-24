@@ -5,6 +5,7 @@ import 'package:blagorodnya_game/views/profile/profile_view.dart';
 import 'package:blagorodnya_game/widgets/app_bar/main_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LayoutTemplate extends StatelessWidget {
   const LayoutTemplate({super.key});
@@ -16,6 +17,7 @@ class LayoutTemplate extends StatelessWidget {
       body: BlocBuilder<PageCubit, PageState>(
         builder: (context, state) {
           if (state is LoginPage) {
+            context.go('/login');
             return const LoginView();
           } else if (state is HomePage) {
             return const HomeView();

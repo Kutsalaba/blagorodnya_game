@@ -23,6 +23,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
   get_it: ^7.4.1
+  universal_html: ^2.2.2
 
   cupertino_icons: ^1.0.2
 

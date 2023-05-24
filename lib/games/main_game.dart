@@ -9,10 +9,9 @@ import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
-
   static final MainGame _instance = MainGame._internal();
 
   factory MainGame() => _instance;
@@ -24,7 +23,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
 
   final JoystickComponent _mainGameJoystick = JoystickComponent(
     knob: CircleComponent(
-      radius: 25,
+      radius: 30,
       paint: BasicPalette.cyan.withAlpha(190).paint(),
     ),
     background: CircleComponent(
@@ -84,7 +83,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
 
     add(_baitComponent);
 
-    add(OctopusComponent(startPosition: Vector2(200, 200)));
+    add(OctopusComponent(startPosition: Vector2(180, 180)));
     add(OctopusComponent(startPosition: Vector2(size.x - 200, size.y - 200)));
 
     add(_turtleComponent);
@@ -99,8 +98,10 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
       anchor: Anchor.topLeft,
       textRenderer: TextPaint(
         style: TextStyle(
-          color: BasicPalette.white.color,
+          color: BasicPalette.darkGreen.color,
           fontSize: 25,
+          fontFamily: GoogleFonts.comicNeue().fontFamily,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -113,25 +114,14 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
       anchor: Anchor.topRight,
       textRenderer: TextPaint(
         style: TextStyle(
-          color: BasicPalette.white.color,
+          color: BasicPalette.darkGreen.color,
           fontSize: 25,
+          fontFamily: GoogleFonts.comicNeue().fontFamily,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
 
-    _timerText = TextComponent(
-      text: 'Time: $score',
-      position: Vector2(size.x - 40, 50),
-      anchor: Anchor.topRight,
-      textRenderer: TextPaint(
-        style: TextStyle(
-          color: BasicPalette.white.color,
-          fontSize: 25,
-        ),
-      ),
-    );
-
-    // Add Score TextComponent.
     add(_timerText);
 
     gameTimer.start();
