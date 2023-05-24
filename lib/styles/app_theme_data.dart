@@ -17,10 +17,11 @@ class AppThemeData {
       appBarTheme: const AppBarTheme(
         // foregroundColor: AppColors.irradiatedGreenColor,
       ),
-
-      // scaffoldBackgroundColor: AppColors.darkblueBlackColor,
-
       primaryTextTheme: TextTheme(
+        titleSmall: const TextStyle(
+          fontSize: 26,
+          fontWeight: FontWeight.w700,
+        ),
         displaySmall: const TextStyle(
           fontSize: 35,
           fontWeight: FontWeight.bold,

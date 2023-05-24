@@ -17,14 +17,13 @@ class LayoutTemplate extends StatelessWidget {
       body: BlocBuilder<PageCubit, PageState>(
         builder: (context, state) {
           if (state is LoginPage) {
-            context.go('/login');
             return const LoginView();
           } else if (state is HomePage) {
             return const HomeView();
           } else if (state is ProfilePage) {
             return const ProfileView();
           }
-
+           //return const LoginView();
           return const Placeholder();
         },
       ),
