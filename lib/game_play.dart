@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/games/main_game.dart';
-import 'package:blagorodnya_game/pages/menus/game_over_menu.dart';
-import 'package:blagorodnya_game/pages/menus/main_menu.dart';
+import 'package:blagorodnya_game/views/menus/game_over_menu.dart';
+import 'package:blagorodnya_game/views/menus/main_menu.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 

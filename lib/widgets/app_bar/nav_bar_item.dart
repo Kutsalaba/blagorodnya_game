@@ -1,6 +1,4 @@
-import 'package:blagorodnya_game/services/navigation_service.dart';
 import 'package:flutter/material.dart';
-import 'package:blagorodnya_game/locator.dart';
 
 class NavBarItem extends StatelessWidget {
   const NavBarItem({

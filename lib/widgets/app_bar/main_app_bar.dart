@@ -1,20 +1,13 @@
-import 'package:blagorodnya_game/locator.dart';
-import 'package:blagorodnya_game/pages/cubit/page_cubit.dart';
-import 'package:blagorodnya_game/routes/app_route_constants.dart';
 import 'package:blagorodnya_game/styles/app_colors.dart';
+import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
 import 'package:blagorodnya_game/widgets/app_bar/nav_bar_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-
-import '../../services/navigation_service.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({Key? key, required this.isLogged}) : super(key: key);
-
-  final bool isLogged;
+  const MainAppBar({Key? key}) : super(key: key);
 
   @override
   Size get preferredSize {
@@ -23,12 +16,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    // bool isAuth = false;
-    // if (FirebaseAuth.instance.currentUser != null) {
-    //   isAuth = true;
-    // }
-    return BlocBuilder<PageCubit, PageState>(
-      builder: (context, state) {
+    return BlocBuilder<AuthenticationCubit, bool>(
+      builder: (context, isLogged) {
+        var pageCubit = context.read<PageCubit>();
+        var authCubit = context.read<AuthenticationCubit>();
         return AppBar(
           centerTitle: false,
           elevation: 0,
@@ -38,24 +29,21 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             NavBarItem(
               text: isLogged ? 'Profile' : 'Login',
               onTap: () => isLogged
-                  ? context.read<PageCubit>().goToProfile()
-                  : context.read<PageCubit>().goToLogin(),
+                  ? pageCubit.goToProfile()
+                  : pageCubit.goToLogin(),
             ),
-            NavBarItem(
-              text: 'Home',
-              onTap: () => context.read<PageCubit>().goToHome(),
-            ),
-
-            // AppBarTextButton(
-            //   onPressed: () async {
-            //     await FirebaseAuth.instance.signOut();
-            //   },
-            //   text: 'LogOut',
-            // ),
+            if (isLogged)
+              NavBarItem(
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  authCubit.logout(() => pageCubit.goToHome());
+                },
+                text: 'LogOut',
+              ),
           ],
           title: InkWell(
             onTap: () {
-              context.read<PageCubit>().goToHome();
+              pageCubit.goToHome();
             },
             child: Text(
               'Blagorodnya Game',

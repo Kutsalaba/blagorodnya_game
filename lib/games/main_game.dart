@@ -3,7 +3,7 @@ import 'package:blagorodnya_game/components/bait_component.dart';
 import 'package:blagorodnya_game/components/octopus_component.dart';
 import 'package:blagorodnya_game/components/turtle_component.dart';
 import 'package:blagorodnya_game/constants/globals.dart';
-import 'package:blagorodnya_game/pages/game_play.dart';
+import 'package:blagorodnya_game/game_play.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';

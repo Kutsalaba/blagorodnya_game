@@ -1,4 +1,4 @@
-import 'package:blagorodnya_game/pages/game_play.dart';
+import 'package:blagorodnya_game/game_play.dart';
 import 'package:blagorodnya_game/widgets/app_gradient_background.dart';
 import 'package:flutter/material.dart';
 

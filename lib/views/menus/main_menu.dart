@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/games/main_game.dart';
-import 'package:blagorodnya_game/pages/game_play.dart';
-import 'package:blagorodnya_game/pages/menus/menu_background_widget.dart';
+import 'package:blagorodnya_game/game_play.dart';
+import 'package:blagorodnya_game/views/menus/menu_background_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainMenu extends StatelessWidget {

@@ -52,7 +52,7 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
       MovementState.attacked: turtleIdleAttacked,
     };
 
-    _rightBound = gameRef.size.x - 110;
+    _rightBound = gameRef.size.x - 120;
     _leftBound = 0 + 5;
     _upBound = 0 + 40;
     _downBound = gameRef.size.y - 35;
@@ -104,15 +104,13 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
       }
 
       position.add(joystick.relativeDelta * _speed * dt);
-    }
-    else {
+    } else {
       _attackedCountdown.update(dt);
       if (_attackedCountdown.finished) {
         _activateTurtle();
       }
     }
   }
-
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
@@ -124,7 +122,7 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
   }
 
   void _attackTurtle() {
-   if (!isAttacked) {
+    if (!isAttacked) {
       isAttacked = true;
 
       FlameAudio.play(Globals.killSound);
@@ -140,5 +138,4 @@ class TurtleComponent extends SpriteGroupComponent<MovementState>
 
     current = MovementState.idle;
   }
- 
 }
