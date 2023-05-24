@@ -1,9 +1,11 @@
 import 'package:blagorodnya_game/locator.dart';
+import 'package:blagorodnya_game/pages/cubit/page_cubit.dart';
 import 'package:blagorodnya_game/routes/app_route_constants.dart';
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/widgets/app_bar/nav_bar_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -25,40 +27,46 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     // if (FirebaseAuth.instance.currentUser != null) {
     //   isAuth = true;
     // }
-    return AppBar(
-      centerTitle: false,
-      elevation: 0,
-      automaticallyImplyLeading: false,
-      backgroundColor: AppColors.beadedBlueColor,
-      actions: [
-        NavBarItem(
-          text: isLogged ? 'Profile' : 'Login',
-          navigationPath: isLogged
-              ? AppRouteConstants.profileRoutePath
-              : AppRouteConstants.loginRoutePath,
-        ),
-        const NavBarItem(
-          text: 'Home',
-          navigationPath: AppRouteConstants.homeRoutePath,
-        ),
+    return BlocBuilder<PageCubit, PageState>(
+      builder: (context, state) {
+        return AppBar(
+          centerTitle: false,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColors.beadedBlueColor,
+          actions: [
+            NavBarItem(
+              text: isLogged ? 'Profile' : 'Login',
+              onTap: () => isLogged
+                  ? context.read<PageCubit>().goToProfile()
+                  : context.read<PageCubit>().goToLogin(),
+            ),
+            NavBarItem(
+              text: 'Home',
+              onTap: () => context.read<PageCubit>().goToHome(),
+            ),
 
-        // AppBarTextButton(
-        //   onPressed: () async {
-        //     await FirebaseAuth.instance.signOut();
-        //   },
-        //   text: 'LogOut',
-        // ),
-      ],
-      title: InkWell(
-        onTap: () => locator<NavigationService>()
-            .navigateTo(AppRouteConstants.homeRoutePath),
-        child: Text(
-          'Blagorodnya Game',
-          style: Theme.of(context).primaryTextTheme.displayLarge,
-        ),
-      ),
+            // AppBarTextButton(
+            //   onPressed: () async {
+            //     await FirebaseAuth.instance.signOut();
+            //   },
+            //   text: 'LogOut',
+            // ),
+          ],
+          title: InkWell(
+            onTap: () {
+              context.read<PageCubit>().goToHome();
+            },
+            child: Text(
+              'Blagorodnya Game',
+              style: Theme.of(context).primaryTextTheme.displayLarge,
+            ),
+          ),
+        );
+      },
     );
-
+  }
+}
     // Container(
     //   color: AppColors.beadedBlueColor,
     //   height: preferredSize.height,
@@ -145,5 +153,6 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     //     ],
     //   ),
     // );
-  }
-}
+ 
+
+

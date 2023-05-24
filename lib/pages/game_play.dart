@@ -9,7 +9,13 @@ MainGame _mainGame = MainGame();
 enum Menu { main, gameOver }
 
 class GamePlay extends StatelessWidget {
-  const GamePlay({super.key});
+  static const GamePlay _instance = GamePlay._internal();
+
+  factory GamePlay() {
+    return _instance;
+  }
+
+  const GamePlay._internal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

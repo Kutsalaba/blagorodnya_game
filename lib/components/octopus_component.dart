@@ -7,7 +7,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class OctopusComponent extends SpriteComponent with HasGameRef<MainGame>, CollisionCallbacks {
-  final double _spriteHeight = 130;
+  final double _spriteHeight = 140;
   final Vector2 startPosition;
 
   late Vector2 _velocity;

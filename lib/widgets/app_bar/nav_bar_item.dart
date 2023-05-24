@@ -6,17 +6,16 @@ class NavBarItem extends StatelessWidget {
   const NavBarItem({
     super.key,
     required this.text,
-    required this.navigationPath,
+    required this.onTap,
   });
 
   final String text;
-  final String navigationPath;
-  
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => locator<NavigationService>().navigateTo(navigationPath),
+      onPressed: () => onTap.call(),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {

@@ -1,4 +1,5 @@
 //import 'package:flame/game.dart';
+import 'package:blagorodnya_game/pages/cubit/page_cubit.dart';
 import 'package:blagorodnya_game/pages/home_page/home_page.dart';
 import 'package:blagorodnya_game/pages/login_page/login_page.dart';
 import 'package:blagorodnya_game/routes/app_route_config.dart';
@@ -9,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -54,7 +56,10 @@ class App extends StatelessWidget {
           const ResponsiveBreakpoint.resize(2468, name: '4K'),
         ],
       ),
-      home: const LayoutTemplate(),
+        home: BlocProvider(
+        create: (context) => PageCubit(),
+        child: const LayoutTemplate(),
+      ),
     );
   }
 }
