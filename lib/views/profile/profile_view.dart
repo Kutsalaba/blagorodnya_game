@@ -13,95 +13,53 @@ class ProfileView extends StatelessWidget {
     var isSmallThanDesktop =
         ResponsiveWrapper.of(context).isSmallerThan(DESKTOP);
     return AppGradientBackground(
-      child: Stack(
+      child: ResponsiveRowColumn(
+        layout: isSmallThanDesktop
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
+        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        columnCrossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: MaterialButton(
-              onPressed: () {},
-              color: Colors.red,
-              child: Text(
-                'Log OUT',
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
+          const ResponsiveRowColumnItem(
+            child: FreeInfoWidget(),
+          ),
+          ResponsiveRowColumnItem(
+            child: SizedBox(
+              width: isSmallThanDesktop ? 15 : 40,
             ),
           ),
-          Align(
-            alignment: Alignment.center,
+          ResponsiveRowColumnItem(
             child: ResponsiveRowColumn(
-              layout: isSmallThanDesktop
-                  ? ResponsiveRowColumnType.COLUMN
-                  : ResponsiveRowColumnType.ROW,
-              rowCrossAxisAlignment: CrossAxisAlignment.start,
-              columnCrossAxisAlignment: CrossAxisAlignment.center,
+              layout: ResponsiveRowColumnType.COLUMN,
               children: [
-                const ResponsiveRowColumnItem(
-                  child: FreeInfoWidget(),
-                ),
                 ResponsiveRowColumnItem(
-                  child: SizedBox(
-                    width: isSmallThanDesktop ? 15 : 40,
+                  child: Text(
+                    'Player Information',
+                    style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
                 ResponsiveRowColumnItem(
-                  child: ResponsiveRowColumn(
-                    layout: ResponsiveRowColumnType.COLUMN,
-                    children: [
-                      ResponsiveRowColumnItem(
-                        child: Text(
-                          'Player Info',
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
+                  child: Container(
+                    width: isSmallThanDesktop ? 350 : 720,
+                    height: isSmallThanDesktop ? 200 : 360,
+                    decoration: BoxDecoration(
+                      color: AppColors.overGrowthColor,
+                      borderRadius:
+                          BorderRadius.circular(isSmallThanDesktop ? 16 : 50),
+                      border: Border.all(
+                        color: AppColors.overGrownTempleColor,
+                        width: 1.5,
                       ),
-                      // ResponsiveRowColumnItem(
-                      //   child: ResponsiveRowColumn(
-                      //     layout: ResponsiveRowColumnType.ROW,
-                      //     children: [
-                      //       ResponsiveRowColumnItem(
-                      //         child: Text(
-                      //           'Player Info',
-                      //           style: Theme.of(context).textTheme.displayMedium,
-                      //         ),
-                      //       ),
-                      //       // ResponsiveRowColumnItem(
-                      //       //   child: MaterialButton(
-                      //       //     onPressed: () {},
-                      //       //     color: Colors.red,
-                      //       //     child: Text(
-                      //       //       'Log OUT',
-                      //       //       style:
-                      //       //           Theme.of(context).textTheme.displayMedium,
-                      //       //     ),
-                      //       //   ),
-                      //       // ),
-                      //     ],
-                      //   ),
-                      // ),
-                      ResponsiveRowColumnItem(
-                        child: Container(
-                          width: isSmallThanDesktop ? 350 : 720,
-                          height: isSmallThanDesktop ? 150 : 360,
-                          decoration: BoxDecoration(
-                            color: AppColors.overGrowthColor,
-                            borderRadius: BorderRadius.circular(
-                                isSmallThanDesktop ? 16 : 50),
-                            border: Border.all(
-                              color: AppColors.overGrownTempleColor,
-                              width: 1.5,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.5),
-                                blurRadius: 2,
-                                spreadRadius: 1,
-                                offset: const Offset(2, 1),
-                              ),
-                            ],
-                          ),
-                          child: ProfileCard(),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 2,
+                          spreadRadius: 1,
+                          offset: const Offset(2, 1),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                    child: ProfileCard(),
                   ),
                 ),
               ],

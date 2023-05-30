@@ -1,41 +1,55 @@
+import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:responsive_framework/responsive_row_column.dart';
 
 class FreeInfoWidget extends StatelessWidget {
   const FreeInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var user = context.read<AuthenticationCubit>().authRepository.userModel;
     var isSmallThanDesktop =
         ResponsiveWrapper.of(context).isSmallerThan(DESKTOP);
-    return ResponsiveRowColumn(
-      layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
-          ? ResponsiveRowColumnType.COLUMN
-          : ResponsiveRowColumnType.ROW,
-      rowCrossAxisAlignment: CrossAxisAlignment.start,
-      columnCrossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ResponsiveRowColumnItem(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: isSmallThanDesktop ? 20 : 40,
-              vertical: isSmallThanDesktop ? 20 : 40,
-            ),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: isSmallThanDesktop ? 20 : 40,
+        vertical: isSmallThanDesktop ? 20 : 40,
+      ),
+      child: ResponsiveRowColumn(
+        layout: ResponsiveRowColumnType.COLUMN,
+        rowCrossAxisAlignment: CrossAxisAlignment.center,
+        columnCrossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ResponsiveRowColumnItem(
             child: CircleAvatar(
               radius: isSmallThanDesktop ? 50 : 100,
               backgroundImage: const NetworkImage(
-                  'https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w='),
+                  'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'),
               backgroundColor: Colors.transparent,
             ),
           ),
-        ),
-        ResponsiveRowColumnItem(
-          child: SizedBox(
-            width: isSmallThanDesktop ? 20 : 30,
+          ResponsiveRowColumnItem(
+            child: SizedBox(
+              width: isSmallThanDesktop ? 20 : 30,
+            ),
           ),
-        ),
-      ],
+          ResponsiveRowColumnItem(
+            child: Text(
+              user!.email,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontSize: isSmallThanDesktop ? 20 : 35,
+                  ),
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            child: MaterialButton(
+              color: Colors.black,
+              onPressed: () {},
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
 import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -22,6 +23,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    var authCubit = context.read<AuthenticationCubit>();
     return Form(
       key: _formKey,
       child: Column(
@@ -119,18 +121,18 @@ class _AuthFormState extends State<AuthForm> {
             width: 200,
             height: 50,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   if (login) {
-                    context.read<AuthenticationCubit>().login(
+                    await authCubit.login(
                           email,
                           password,
                           context,
                           () => context.read<PageCubit>().goToHome(),
                         );
                   } else {
-                    context.read<AuthenticationCubit>().signup(
+                    await authCubit.signup(
                           email,
                           password,
                           nickname,
@@ -138,6 +140,10 @@ class _AuthFormState extends State<AuthForm> {
                           () => context.read<PageCubit>().goToHome(),
                         );
                   }
+                  var userId = FirebaseAuth.instance.currentUser!.uid;
+                  await authCubit
+                      .authRepository
+                      .getUserData(userId);
                 }
               },
               style: ElevatedButton.styleFrom(

@@ -23,7 +23,7 @@ class LayoutTemplate extends StatelessWidget {
           } else if (state is ProfilePage) {
             return const ProfileView();
           }
-           //return const LoginView();
+          // return const ProfileView();
           return const Placeholder();
         },
       ),
