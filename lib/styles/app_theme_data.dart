@@ -18,6 +18,10 @@ class AppThemeData {
         // foregroundColor: AppColors.irradiatedGreenColor,
       ),
       primaryTextTheme: TextTheme(
+        titleMedium: const TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.w600,
+        ),
         titleSmall: const TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.w700,
