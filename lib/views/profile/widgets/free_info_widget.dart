@@ -1,14 +1,16 @@
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class FreeInfoWidget extends StatelessWidget {
-  const FreeInfoWidget({super.key});
+  const FreeInfoWidget({
+    super.key,
+    required this.email,
+  });
+
+  final String email;
 
   @override
   Widget build(BuildContext context) {
-    var user = context.read<AuthenticationCubit>().authRepository.userModel;
     var isSmallThanDesktop =
         ResponsiveWrapper.of(context).isSmallerThan(DESKTOP);
     return Padding(
@@ -36,18 +38,18 @@ class FreeInfoWidget extends StatelessWidget {
           ),
           ResponsiveRowColumnItem(
             child: Text(
-              user!.email,
+              email,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontSize: isSmallThanDesktop ? 20 : 35,
                   ),
             ),
           ),
-          ResponsiveRowColumnItem(
-            child: MaterialButton(
-              color: Colors.black,
-              onPressed: () {},
-            ),
-          ),
+          // ResponsiveRowColumnItem(
+          //   child: MaterialButton(
+          //     color: Colors.black,
+          //     onPressed: () {},
+          //   ),
+          // ),
         ],
       ),
     );

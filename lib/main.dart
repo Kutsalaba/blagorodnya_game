@@ -21,6 +21,7 @@ void main() async {
       messagingSenderId: "275636510331",
     ),
   );
+
   setupLocator();
   runApp(const App());
 }
@@ -33,7 +34,6 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationCubit>.value(value: AuthenticationCubit()),
-       
         BlocProvider(
           create: (context) => PageCubit(),
           child: const LayoutTemplate(),
@@ -43,10 +43,6 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter',
         theme: AppThemeData().defaultThemeData,
-        // routerConfig: AppRoutes.routes,
-        // routeInformationParser:
-        //     AppRouterConfig.returnRouter(false).routeInformationParser,
-        // routerDelegate: AppRouterConfig.returnRouter(false).routerDelegate,
         builder: (context, widget) => ResponsiveWrapper.builder(
           ClampingScrollWrapper.builder(context, widget!),
           breakpoints: [
@@ -57,10 +53,7 @@ class App extends StatelessWidget {
             const ResponsiveBreakpoint.resize(2468, name: '4K'),
           ],
         ),
-          home: BlocProvider(
-          create: (context) => PageCubit(),
-          child: const LayoutTemplate(),
-        ),
+        home: const LayoutTemplate(),
       ),
     );
   }

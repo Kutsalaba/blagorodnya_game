@@ -1,7 +1,6 @@
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
 import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -126,24 +125,20 @@ class _AuthFormState extends State<AuthForm> {
                   _formKey.currentState!.save();
                   if (login) {
                     await authCubit.login(
-                          email,
-                          password,
-                          context,
-                          () => context.read<PageCubit>().goToHome(),
-                        );
+                      email,
+                      password,
+                      context,
+                      () => context.read<PageCubit>().goToHome(),
+                    );
                   } else {
                     await authCubit.signup(
-                          email,
-                          password,
-                          nickname,
-                          context,
-                          () => context.read<PageCubit>().goToHome(),
-                        );
+                      email,
+                      password,
+                      nickname,
+                      context,
+                      () => context.read<PageCubit>().goToHome(),
+                    );
                   }
-                  var userId = FirebaseAuth.instance.currentUser!.uid;
-                  await authCubit
-                      .authRepository
-                      .getUserData(userId);
                 }
               },
               style: ElevatedButton.styleFrom(

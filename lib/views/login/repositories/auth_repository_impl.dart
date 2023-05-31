@@ -5,7 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class AuthRepositoryImpl implements AuthRepositoryI {
   late UserModel? userModel;
 
-  AuthRepositoryImpl({this.userModel});
+  AuthRepositoryImpl._();
+
+  static final AuthRepositoryImpl _instance = AuthRepositoryImpl._();
+
+  factory AuthRepositoryImpl() {
+    return _instance;
+  }
 
   @override
   Future<void> getUserData(String userId) async {

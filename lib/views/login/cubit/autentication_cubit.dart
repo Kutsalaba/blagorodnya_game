@@ -4,12 +4,15 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'autentication_state.dart';
 
 class AuthenticationCubit extends Cubit<bool> {
   AuthenticationCubit() : super(false);
-  late final AuthRepositoryImpl authRepository;
+  AuthRepositoryImpl? _authRepository;
+
+  AuthRepositoryImpl get authRepository => _authRepository!;
 
   Future<void> login(
     String email,
@@ -23,6 +26,7 @@ class AuthenticationCubit extends Cubit<bool> {
       if (FirebaseAuth.instance.currentUser != null) {
         _setAuthRepo.call();
         emit(true);
+        saveAuthStatus(true);
         function.call();
       }
     } catch (e) {
@@ -43,6 +47,7 @@ class AuthenticationCubit extends Cubit<bool> {
       if (user != null) {
         _setAuthRepo.call();
         emit(true);
+        saveAuthStatus(true);
         function.call();
       }
     } catch (e) {
@@ -54,6 +59,7 @@ class AuthenticationCubit extends Cubit<bool> {
     try {
       await FirebaseAuth.instance.signOut();
       emit(false);
+      saveAuthStatus(false);
       function.call();
     } catch (e) {
       print('Logout failed: $e');
@@ -61,6 +67,21 @@ class AuthenticationCubit extends Cubit<bool> {
   }
 
   void _setAuthRepo() {
-    authRepository = AuthRepositoryImpl();
+    _authRepository ??= AuthRepositoryImpl();
+  }
+
+  Future<void> checkAuthStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool isAuthenticated = prefs.getBool('isAuthenticated') ?? false;
+
+    if (isAuthenticated) {
+      _setAuthRepo();
+      emit(true);
+    }
+  }
+
+  Future<void> saveAuthStatus(bool isAuthenticated) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isAuthenticated', isAuthenticated);
   }
 }
