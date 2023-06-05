@@ -43,6 +43,10 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
 
   int score = 0;
 
+  int get time => _time;
+
+  int _time = 0;
+
   static int _remainingTime = Globals.gameTimeLimit;
 
   late Timer gameTimer;
@@ -60,7 +64,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
     gameTimer = Timer(
       1,
       repeat: true,
-      onTick: () {
+      onTick: () async {
         if (_remainingTime == 0) {
           pauseEngine();
 
@@ -68,6 +72,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
         }
 
         _remainingTime -= 1;
+        _time += 1;
       },
     );
 
@@ -109,7 +114,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
     add(_scoreText);
 
     _timerText = TextComponent(
-      text: 'Time: $score',
+      text: 'Time: $_remainingTime secs',
       position: Vector2(size.x - 40, 50),
       anchor: Anchor.topRight,
       textRenderer: TextPaint(
@@ -139,6 +144,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
 
   void reset() {
     score = 0;
+    _time = 0;
 
     _remainingTime = Globals.gameTimeLimit;
   }

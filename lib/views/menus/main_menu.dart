@@ -1,5 +1,5 @@
-import 'package:blagorodnya_game/games/main_game.dart';
 import 'package:blagorodnya_game/game_play.dart';
+import 'package:blagorodnya_game/games/main_game.dart';
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/views/menus/menu_background_widget.dart';
 import 'package:flutter/material.dart';

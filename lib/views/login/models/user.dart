@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 
 class UserModel {
   final String email;
@@ -20,7 +18,6 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> map) {
     return UserModel(
       email: map['email'] as String,
-      // dateTime: DateFormat('dd.MM.yyy').format(map['dateTime'].toDate()),
       dateTime: DateTime.fromMillisecondsSinceEpoch(
           map['dateTime'].millisecondsSinceEpoch),
       gameScore: map['gameScore'] as int,
@@ -29,11 +26,27 @@ class UserModel {
     );
   }
 
-  String toJson() => json.encode(<String, dynamic>{
+  Map<String, dynamic> toJson() => {
         'email': email,
         'dateTime': Timestamp.fromDate(dateTime),
         'gameScore': gameScore,
         'name': name,
         'spendTime': spendTime,
-      });
+      };
+
+  UserModel copyWith({
+    String? email,
+    DateTime? dateTime,
+    int? gameScore,
+    String? name,
+    int? spendTime,
+  }) {
+    return UserModel(
+      email: email ?? this.email,
+      dateTime: dateTime ?? this.dateTime,
+      gameScore: gameScore ?? this.gameScore,
+      name: name ?? this.name,
+      spendTime: spendTime ?? this.spendTime,
+    );
+  }
 }

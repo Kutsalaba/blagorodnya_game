@@ -44,12 +44,6 @@ class FreeInfoWidget extends StatelessWidget {
                   ),
             ),
           ),
-          // ResponsiveRowColumnItem(
-          //   child: MaterialButton(
-          //     color: Colors.black,
-          //     onPressed: () {},
-          //   ),
-          // ),
         ],
       ),
     );

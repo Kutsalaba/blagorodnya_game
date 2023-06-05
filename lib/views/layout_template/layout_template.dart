@@ -10,7 +10,7 @@ class LayoutTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authCubit = context.read<AuthenticationCubit>();
-    Future.microtask(() => authCubit.checkAuthStatus());
+    Future.microtask(() async => await authCubit.checkAuthStatus());
     return const Scaffold(
       appBar: MainAppBar(),
       body: LayoutTemplateBody(),

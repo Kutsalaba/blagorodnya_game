@@ -10,9 +10,9 @@ part 'autentication_state.dart';
 
 class AuthenticationCubit extends Cubit<bool> {
   AuthenticationCubit() : super(false);
-  AuthRepositoryImpl? _authRepository;
+  UserRepositoryImpl? _authRepository;
 
-  AuthRepositoryImpl get authRepository => _authRepository!;
+  UserRepositoryImpl get authRepository => _authRepository!;
 
   Future<void> login(
     String email,
@@ -67,7 +67,7 @@ class AuthenticationCubit extends Cubit<bool> {
   }
 
   void _setAuthRepo() {
-    _authRepository ??= AuthRepositoryImpl();
+    _authRepository ??= UserRepositoryImpl();
   }
 
   Future<void> checkAuthStatus() async {
