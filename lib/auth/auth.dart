@@ -1,4 +1,5 @@
 import 'package:blagorodnya_game/services/firestore/firestore_users.dart';
+import 'package:blagorodnya_game/views/login/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,18 @@ class AuthServices {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
+      DateTime now = DateTime.now();
+      UserModel newUser = UserModel(
+        email: email,
+        dateTime: now,
+        gameScore: 0,
+        name: name,
+        spendTime: 0,
+      );
+
       await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       await FirebaseAuth.instance.currentUser!.updateEmail(email);
-      await FirestoreUsers.saveUser(name, email, userCredential.user!.uid);
+      await FirestoreUsers.saveUser(userCredential.user!.uid, newUser);
 
       message.showSnackBar(
           const SnackBar(content: Text('Registration Successful')));
