@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/authentication_cubit.dart';
 import 'package:blagorodnya_game/widgets/app_bar/nav_bar_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +16,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticationCubit, bool>(
-      builder: (context, isLogged) {
+    return BlocBuilder<AuthenticationCubit, AuthenticationState>(
+      builder: (context, state) {
         var pageCubit = context.read<PageCubit>();
         var authCubit = context.read<AuthenticationCubit>();
+        var isLogged = state is AuthorizedState;
         return AppBar(
           centerTitle: false,
           elevation: 0,
@@ -28,9 +29,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           actions: [
             NavBarItem(
               text: isLogged ? 'Profile' : 'Login',
-              onTap: () => isLogged
-                  ? pageCubit.goToProfile()
-                  : pageCubit.goToLogin(),
+              onTap: () =>
+                  isLogged ? pageCubit.goToProfile() : pageCubit.goToLogin(),
             ),
             if (isLogged)
               NavBarItem(

@@ -47,6 +47,14 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
 
   int _time = 0;
 
+  bool _isActive = true;
+
+  bool get isActive => _isActive;
+
+  void setActive(bool isActive) {
+    _isActive = isActive;
+  }
+
   static int _remainingTime = Globals.gameTimeLimit;
 
   late Timer gameTimer;
@@ -145,6 +153,7 @@ class MainGame extends FlameGame with HasDraggables, HasCollisionDetection {
   void reset() {
     score = 0;
     _time = 0;
+    _isActive = true;
 
     _remainingTime = Globals.gameTimeLimit;
   }

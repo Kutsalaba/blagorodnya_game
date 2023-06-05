@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/styles/app_colors.dart';
 import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/authentication_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';

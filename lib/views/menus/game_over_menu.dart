@@ -1,6 +1,6 @@
 import 'package:blagorodnya_game/game_play.dart';
 import 'package:blagorodnya_game/games/main_game.dart';
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/authentication_cubit.dart';
 import 'package:blagorodnya_game/views/login/models/user_params.dart';
 import 'package:blagorodnya_game/views/menus/menu_background_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +14,7 @@ class GameOverMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
+    if (user != null && gameRef.isActive) {
       var userParams = UserParams(
         spendTime: gameRef.time - 1,
         gameScore: gameRef.score,
@@ -26,6 +26,7 @@ class GameOverMenu extends StatelessWidget {
           userParams,
         ),
       );
+      gameRef.setActive(false);
     }
     return MenuBackgroundWidget(
       child: Center(

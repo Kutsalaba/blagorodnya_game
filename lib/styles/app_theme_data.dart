@@ -15,7 +15,6 @@ class AppThemeData {
     _appTheme = ThemeData(
       fontFamily: GoogleFonts.comicNeue().fontFamily,
       appBarTheme: const AppBarTheme(
-        // foregroundColor: AppColors.irradiatedGreenColor,
       ),
       primaryTextTheme: TextTheme(
         titleMedium: const TextStyle(

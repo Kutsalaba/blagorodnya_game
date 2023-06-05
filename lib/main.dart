@@ -1,7 +1,7 @@
 import 'package:blagorodnya_game/styles/app_theme_data.dart';
 import 'package:blagorodnya_game/views/cubit/page_cubit.dart';
 import 'package:blagorodnya_game/views/layout_template/layout_template.dart';
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/authentication_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +41,6 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter',
         theme: AppThemeData().defaultThemeData,
         builder: (context, widget) => ResponsiveWrapper.builder(
           ClampingScrollWrapper.builder(context, widget!),

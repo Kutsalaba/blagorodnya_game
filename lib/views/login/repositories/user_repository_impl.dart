@@ -1,9 +1,9 @@
 import 'package:blagorodnya_game/views/login/models/user.dart';
 import 'package:blagorodnya_game/views/login/models/user_params.dart';
-import 'package:blagorodnya_game/views/login/repositories/auth_repository.dart';
+import 'package:blagorodnya_game/views/login/repositories/user_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserRepositoryImpl implements AuthRepositoryI {
+class UserRepositoryImpl implements UserRepositoryI {
   late UserModel? userModel;
 
   UserRepositoryImpl._();

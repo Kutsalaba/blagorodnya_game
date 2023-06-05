@@ -1,5 +1,5 @@
 import 'package:blagorodnya_game/styles/app_colors.dart';
-import 'package:blagorodnya_game/views/login/cubit/autentication_cubit.dart';
+import 'package:blagorodnya_game/views/login/cubit/authentication_cubit.dart';
 import 'package:blagorodnya_game/views/profile/widgets/profile_card.dart';
 import 'package:blagorodnya_game/views/profile/widgets/free_info_widget.dart';
 import 'package:blagorodnya_game/widgets/app_gradient_background.dart';
