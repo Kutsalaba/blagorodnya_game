@@ -15,6 +15,6 @@ class Globals {
   static const String eatSound = 'eat-sound.wav';
   static const String killSound = 'kill-sound.wav';
 
-  static const int gameTimeLimit = 10;
+  static const int gameTimeLimit = 60;
   static const int noActiveTimeLimit = 3;
 }
